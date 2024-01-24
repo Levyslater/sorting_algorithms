@@ -9,14 +9,13 @@
  */
 int main(void)
 {
-    int array[] = {5, 12, 8, 19, 1, 3, 10, 15, 6, 14, 7, 2, 20, 18, 4, 9, 11, 17, 16, 13};
+    int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
     size_t n = sizeof(array) / sizeof(array[0]);
 
     print_array(array, n);
     printf("\n");
-    quick_sort(array, n);
+    shell_sort(array, n);
     printf("\n");
     print_array(array, n);
-
     return (0);
 }
