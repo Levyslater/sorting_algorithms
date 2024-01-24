@@ -1,32 +1,65 @@
-#include <stdio.h>
+#include "sort.h"
 
-void partition(int *arr, int lb, int ub)
+/**
+ * partition - sorts an arrray using quickksort technique
+ * @lb: array lower bound
+ * @ub: array upper bound
+ * @size: array size
+ * @arr: pointer to the array
+ *
+ * Return: void
+*/
+void partition(int *arr, int lb, int ub, size_t size)
 {
-    if (lb < ub )
-    {
-        int pivot = arr[ub], i;
-        int index = lb, temp;
+	int pivot = arr[ub];
+	int start = lb, end = ub - 1, temp;
 
-        for (i = lb; i < ub; i++)
-        {
-            if (arr[i] <= pivot)
-            {
-                temp = arr[i];
-                arr[i] = arr[index];
-                arr[index] = temp;
-                index++;
-            }
+	if (lb < ub)
+	{
 
-        }
-        temp = arr[index];
-        arr[index]  = arr[ub];
-        arr[ub] = temp;
-        partition(arr, lb, index - 1);
-        partition(arr, index + 1, ub);
-    }
+		while (start <= end)
+		{
+
+			while (arr[start] <= pivot && start <= end)
+			{
+				start++;
+			}
+
+			while (arr[end] > pivot && start <= end)
+			{
+				end--;
+			}
+			if (start < end)
+			{
+				temp = arr[start];
+				arr[start] = arr[end];
+				arr[end] = temp;
+				print_array(arr, size);
+			}
+		}
+		if (start != ub)
+			/*avoid same element swapping */
+		{
+			temp = arr[start];
+			arr[start] = arr[ub];
+			arr[ub] = temp;
+			print_array(arr, size);
+		}
+		partition(arr, lb, start - 1, size);
+		partition(arr, start + 1, ub, size);
+	}
 }
-
-void quickSort(int *arr, int size)
+/**
+ * quick_sort - sorts an array using quick sort technique
+ * @arr: array to sort
+ * @size: array size
+ *
+ * Return: void
+*/
+void quick_sort(int *arr, size_t size)
 {
-    partition(arr, 0, size - 1);
+	if (arr == NULL || size < 2)
+		return;
+
+	partition(arr, 0, size - 1, size);
 }

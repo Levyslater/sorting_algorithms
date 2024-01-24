@@ -28,6 +28,8 @@ void bubble_sort(int *array, size_t size);
 void print_list(const listint_t *list);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
+void quick_sort(int *arr, size_t size);
+void partition(int *arr, int lb, int ub, size_t size);
 /* Macros */
 
 #endif
